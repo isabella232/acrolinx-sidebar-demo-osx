@@ -8,7 +8,7 @@
 
 #import <WebKit/WebKit.h>
 
-@interface LocalStorageManager : NSObject
+@interface ACROLocalStorageManager : NSObject
 
 + (instancetype)localStorageManagerWithScriptObject:(WebScriptObject *)scriptObject forURL:(NSURL *)url;
 - (instancetype)initWithWithScriptObject:(WebScriptObject *)scriptObject forURL:(NSURL *)url;

@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "IndexStore.h"
+#import "ACROIndexStore.h"
 
 
-@interface XMLLookUpHelper : NSObject
+@interface ACROXMLLookUpHelper : NSObject
 
 @property (nonatomic, retain, readonly) NSMutableString *matchingStore;
-@property (nonatomic, retain, readonly) IndexStore *indexStore;
+@property (nonatomic, retain, readonly) ACROIndexStore *indexStore;
 
 + (instancetype)xmlLookUpHelperWithXML:(NSString *)XML;
 

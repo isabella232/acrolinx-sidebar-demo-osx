@@ -43,7 +43,7 @@ typedef NS_OPTIONS(NSUInteger, XMLCleanOptions){
 	XMLCleanOptionAllTags		= 1 << 64
 };
 
-@interface XMLCleaner : NSObject
+@interface ACROXMLCleaner : NSObject
 
 + (NSString *)cleanXMLString:(NSString *)XMLString withOptions:(XMLCleanOptions)options;
 + (NSString *)cleanXMLString:(NSString *)XMLString withOptions:(XMLCleanOptions)options withSubstitution:(NSString *)substitution;

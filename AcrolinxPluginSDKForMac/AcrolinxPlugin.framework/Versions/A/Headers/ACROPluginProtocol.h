@@ -15,7 +15,7 @@
  *  @discussion Plugins conforming to this protocol must know what types of files it can handle.
  *   The Acrolinx Application determines which of the plugins can handle a certain file extension and tells the corresponding instance to open the file.
  */
-@protocol AcrolinxPluginProtocol <NSObject>
+@protocol ACROPluginProtocol <NSObject>
 
 @optional
 
@@ -102,11 +102,11 @@
 + (NSString *)minimumSidebarVersion;
 
 /**
- *
- *  Used to determine whether or not we support check selection for a particular plugin.
- *
- *  @return A dictionary containing support for check selection.
- */
+*
+*  Used to determine whether or not we support check selection for a particular plugin.
+*
+*  @return A array containing(true/false values) support for check selection.
+*/
 + (NSArray *)checkSelectionSupported;
 
 /**

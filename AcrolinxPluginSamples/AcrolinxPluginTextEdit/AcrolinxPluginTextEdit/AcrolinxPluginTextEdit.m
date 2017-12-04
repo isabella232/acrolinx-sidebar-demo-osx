@@ -32,11 +32,11 @@ end tell";
 NSString *const kSelectedContentTextRangeScriptFormat =@"tell application \"System Events\" to tell application process \"TextEdit\" to tell attribute \"AXSelectedTextRange\" of text area 1 of scroll area 1 of window 1 to set range to its value \n\
 return range";
 
-@interface AcrolinxPluginTextEdit () <AcrolinxPluginProtocol, AcrolinxSidebarDelegate>
+@interface AcrolinxPluginTextEdit () <ACROPluginProtocol, AcrolinxSidebarDelegate>
 
 @property (nonatomic, retain) NSString *ownFilePath;
 @property (nonatomic, retain) AcrolinxPollingProxy *activeDocumentPollingProxy;
-@property (nonatomic, retain) IndexStore *indexStore;
+@property (nonatomic, retain) ACROIndexStore *indexStore;
 
 @end
 
@@ -45,7 +45,7 @@ static TextEditApplication *textEditApplication;
 @implementation AcrolinxPluginTextEdit
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if (self = [super init]) { //!OCLINT
         
     }
     return self;
@@ -60,10 +60,10 @@ static TextEditApplication *textEditApplication;
     return textEditApplication;
 }
 
-- (IndexStore *)indexStore {
+- (ACROIndexStore *)indexStore {
     @synchronized (self) {
         if (!_indexStore) {
-            _indexStore = [IndexStore indexStore];
+            _indexStore = [ACROIndexStore indexStore];
         }
         return _indexStore;
     }
@@ -143,7 +143,7 @@ static TextEditApplication *textEditApplication;
 }
 
 - (NSString *)openFileAtPath:(NSString *)filePath {
-    LLog(@"NSWorkspace did open file.");
+    LLog(@"NSWorkspace did open file.");  //!OCLINT
     [[self textEditApplication] activate];
     [[self sidebarController] showWindow:self];
     [NSApp unhide:self];
@@ -151,18 +151,18 @@ static TextEditApplication *textEditApplication;
     
     _activeDocumentPollingProxy = [AcrolinxPollingProxy pollingProxyWithReponseHandler:^(AcrolinxPollingProxy *pollingProxy, id oldValue, id newValue) {
         
-        LLog(@"Current file path '%@'" , [self ownFilePath]);
+        LLog(@"Current file path '%@'" , [self ownFilePath]); //!OCLINT
         
-        LLog(@"--------------------\n%@\n%@\n--------------------", oldValue, newValue);
+        LLog(@"--------------------\n%@\n%@\n--------------------", oldValue, newValue); //!OCLINT
         
-        if (newValue && ([newValue length] < 1)) {
+        if (([newValue length] < 1)) {
             return;
         }
-        if (oldValue && ([oldValue length] < 1)) {
+        if (([oldValue length] < 1)) {
             return;
         }
         
-        LLog(@"polled new active document:\n'%@'\n'%@'", oldValue, newValue);
+        LLog(@"polled new active document:\n'%@'\n'%@'", oldValue, newValue); //!OCLINT
         if ((oldValue && (!newValue || ![newValue isEqualToString:oldValue]))
             || (newValue && (!oldValue || ![oldValue isEqualToString:newValue]))) {
             BOOL closed = YES;
@@ -175,18 +175,18 @@ static TextEditApplication *textEditApplication;
             }
             
             if (closed) {
-                LLog(@"fileClosed - close sidebar");
+                LLog(@"fileClosed - close sidebar"); //!OCLINT
                 [self fileClosed:[self ownFilePath]];
             }
             else if ([oldValue isEqualToString:[self ownFilePath]]) {
                 if ([[self sidebarController] isWindowVisible]) {
-                    LLog(@"hide sidebar");
+                    LLog(@"hide sidebar"); //!OCLINT
                     [NSApp hide:self];
                 }
             }
             else if ([newValue isEqualToString:[self ownFilePath]]) {
                 if (![[self sidebarController] isWindowVisible]) {
-                    LLog(@"show sidebar");
+                    LLog(@"show sidebar"); //!OCLINT
                     [NSApp unhide:self];
                 }
             }
@@ -222,7 +222,7 @@ static TextEditApplication *textEditApplication;
     NSMutableArray *selectedContentArray = [NSMutableArray array];
     // Uncomment the code to make check selection working.
     /*if(![options isEqual: @"undefined"]){
-        int selectionValue = [[options objectForKey:@"selection"] intValue];
+        int selectionValue = [options [@"selection"] intValue];
         int numberWithValue =[@1 intValue];
         if(selectionValue == numberWithValue)
         {
@@ -285,8 +285,8 @@ static TextEditApplication *textEditApplication;
      *
      */
     
-    NSUInteger unshiftedStartOfRange = [[[[matches firstObject] objectForKey:@"range"] firstObject] unsignedIntegerValue];
-    NSUInteger unshiftedEndOfRange = [[[[matches lastObject] objectForKey:@"range"] lastObject] unsignedIntegerValue];
+    NSUInteger unshiftedStartOfRange = [[[matches firstObject] [@"range"] firstObject] unsignedIntegerValue];
+    NSUInteger unshiftedEndOfRange = [[[matches lastObject] [@"range"] lastObject] unsignedIntegerValue];
     
     NSUInteger startOfRange = [[self indexStore] shiftedIndex:unshiftedStartOfRange];
     NSUInteger endOfRange = startOfRange + (unshiftedEndOfRange - unshiftedStartOfRange);
@@ -297,7 +297,7 @@ static TextEditApplication *textEditApplication;
     NSAppleScript *script = [[NSAppleScript alloc] initWithSource:highlightTextScript];
     NSAppleEventDescriptor *theResult = [script executeAndReturnError:&errorDict];
     if (!theResult) {
-        LLog(@"Script to highlight text returned error: %@", [errorDict valueForKey:@"NSAppleScriptErrorBriefMessage"]);
+        LLog(@"Script to highlight text returned error: %@", [errorDict valueForKey:@"NSAppleScriptErrorBriefMessage"]); //!OCLINT
         return ;
     }
     
@@ -315,12 +315,12 @@ static TextEditApplication *textEditApplication;
     for (NSDictionary *replacement in replacements) {
         LLog(@"rplcmnt: %@", replacement);
         
-        NSUInteger unshiftedStartOfRange = [[[replacement objectForKey:@"range"] firstObject] unsignedIntegerValue];
-        NSUInteger unshiftedEndOfRange = [[[replacement objectForKey:@"range"] lastObject] unsignedIntegerValue];
+        NSUInteger unshiftedStartOfRange = [[replacement [@"range"] firstObject] unsignedIntegerValue];
+        NSUInteger unshiftedEndOfRange = [[replacement [@"range"] lastObject] unsignedIntegerValue];
         
         NSUInteger startOfRange = [[self indexStore] shiftedIndex:unshiftedStartOfRange];
         NSUInteger endOfRange = startOfRange + (unshiftedEndOfRange - unshiftedStartOfRange) -1;
-        NSString *replacementString = [replacement objectForKey:@"replacement"];
+        NSString *replacementString = replacement [@"replacement"];
         
         NSString *replaceTextScript = [NSString stringWithFormat:kReplaceTextScriptFormat,
                                          (unsigned long)startOfRange, (unsigned long)endOfRange, replacementString];
@@ -329,7 +329,7 @@ static TextEditApplication *textEditApplication;
         NSAppleScript *script = [[NSAppleScript alloc] initWithSource:replaceTextScript];
         NSAppleEventDescriptor *theResult = [script executeAndReturnError:&errorDict];
         if (!theResult) {
-            LLog(@"Script to replace text returned error: %@", [errorDict valueForKey:@"NSAppleScriptErrorBriefMessage"]);
+            LLog(@"Script to replace text returned error: %@", [errorDict valueForKey:@"NSAppleScriptErrorBriefMessage"]); //!OCLINT
             return nil;
         }
         

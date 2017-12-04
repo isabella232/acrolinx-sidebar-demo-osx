@@ -13,7 +13,7 @@
 @class WebView;
 
 
-@interface AcrolinxWebViewNewWindowHandler : NSObject
+@interface ACROWebViewNewWindowHandler : NSObject
 
 +(WebView *)newWindowHandlerWebView;
 

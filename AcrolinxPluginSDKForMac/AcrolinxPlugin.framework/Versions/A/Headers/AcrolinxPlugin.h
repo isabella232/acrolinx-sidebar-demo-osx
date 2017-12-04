@@ -30,16 +30,16 @@ FOUNDATION_EXPORT const unsigned char AcrolinxPluginVersionString[];
 
 #define SIDEBAR_VERSION_STRING @"v14"
 #define WEBCHECKER_VERSION_STRING @"v1"
-#import "AcrolinxWindow.h"
-#import "PollingProxy.h"
-#import "AcrolinxPluginProtocol.h"
-#import "AcrolinxSidebarInterface.h"
-#import "AcrolinxSidebarController.h"
-#import "IndexStore.h"
-#import "XMLCleaner.h"
-#import "XMLLookUpHelper.h"
-#import "LocalStorageManager.h"
-#import "AcrolinxWebViewNewWindowHandler.h"
+#import "ACROWindow.h"
+#import "ACROPollingProxy.h"
+#import "ACROPluginProtocol.h"
+#import "ACROSidebarInterface.h"
+#import "ACROSidebarController.h"
+#import "ACROIndexStore.h"
+#import "ACROXMLCleaner.h"
+#import "ACROXMLLookUpHelper.h"
+#import "ACROLocalStorageManager.h"
+#import "ACROWebViewNewWindowHandler.h"
 
 
 void dispatch_async_main(dispatch_block_t block);
@@ -55,7 +55,7 @@ void dispatch_sync_main(dispatch_block_t block);
  AcrolinxSidebarController instance associated with the plugin.
  */
 
-@property (nonatomic, retain) AcrolinxSidebarController *sidebarController;
+@property (nonatomic, retain) ACROSidebarController *sidebarController;
 
 @property (nonatomic, retain, readonly) NSUserDefaults *acrolinxUserDefaults;
 @property (nonatomic, retain, readonly) NSString *currentCheckID;

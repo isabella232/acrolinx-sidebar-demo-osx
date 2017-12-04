@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface IndexStore : NSObject
+@interface ACROIndexStore : NSObject
 
 + (instancetype)indexStore;
 

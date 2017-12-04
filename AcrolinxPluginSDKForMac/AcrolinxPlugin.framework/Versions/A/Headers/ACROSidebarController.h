@@ -7,14 +7,14 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "AcrolinxWindow.h"
-#import "AcrolinxSidebarInterface.h"
+#import "ACROWindow.h"
+#import "ACROSidebarInterface.h"
 
 @class WebView;
 
 @protocol AcrolinxSidebarControllerDelegate;
 
-@interface AcrolinxSidebarController : NSWindowController <AcrolinxWindowHoverDelegate>
+@interface ACROSidebarController : NSWindowController <AcrolinxWindowHoverDelegate>
 
 @property (strong) IBOutlet AcrolinxWindow *window;
 @property (strong) IBOutlet WebView *webView;
@@ -24,7 +24,7 @@
 @property (assign) id<AcrolinxSidebarControllerDelegate> delegate;
 @property (assign) BOOL performGlobalCheckOnLoad;
 
-@property (nonatomic, retain) AcrolinxSidebarInterface *JSInterface;
+@property (nonatomic, retain) ACROSidebarInterface *JSInterface;
 
 - (void)loadURL:(NSURL *)URL;
 - (void)loadStartPageURL:(NSURL *)URL;
@@ -34,7 +34,7 @@
 
 @protocol AcrolinxSidebarControllerDelegate <NSObject>
 @optional
-- (void)pluginSidebarController:(AcrolinxSidebarController *)sidebarController mouseOver:(NSEvent *)theEvent;
-- (void)pluginSidebarController:(AcrolinxSidebarController *)sidebarController mouseOut:(NSEvent *)theEvent;
+- (void)pluginSidebarController:(ACROSidebarController *)sidebarController mouseOver:(NSEvent *)theEvent;
+- (void)pluginSidebarController:(ACROSidebarController *)sidebarController mouseOut:(NSEvent *)theEvent;
 
 @end

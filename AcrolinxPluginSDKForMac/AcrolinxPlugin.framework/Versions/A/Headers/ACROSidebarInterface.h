@@ -10,16 +10,16 @@
 #import <WebKit/WebKit.h>
 #import <WebKit/WebScriptObject.h>
 #import <JavaScriptCore/JavaScriptCore.h>
-#import "AcrolinxPluginProtocol.h"
+#import "ACROPluginProtocol.h"
 
 @protocol AcrolinxSidebarDelegate;
 
 /**
  AcrolinxSidebarInterface handles communication between the sidebar and the plugin. This class is instantiated and managed by AcrolinxSidebarController.
  */
-@interface AcrolinxSidebarInterface : NSObject
+@interface ACROSidebarInterface : NSObject
 
-@property (nonatomic, assign) id<AcrolinxPluginProtocol, AcrolinxSidebarDelegate>JSDelegate;
+@property (nonatomic, assign) id<ACROPluginProtocol, AcrolinxSidebarDelegate>JSDelegate;
 @property (nonatomic, assign) JSContextRef JSContext;
 
 @property (assign) BOOL shouldCheckOnSidebarLoaded;
