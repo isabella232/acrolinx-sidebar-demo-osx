@@ -222,30 +222,33 @@ static TextEditApplication *textEditApplication;
     NSMutableArray *selectedContentArray = [NSMutableArray array];
     // Uncomment the code to make check selection working.
     /*if(![options isEqual: @"undefined"]){
-        int selectionValue = [options [@"selection"] intValue];
-        int numberWithValue =[@1 intValue];
-        if(selectionValue == numberWithValue)
-        {
-            NSString *selectedContentTextRangeScript = [NSString stringWithFormat:kSelectedContentTextRangeScriptFormat];
-            NSDictionary *errorDict;
-            NSAppleScript *script = [[NSAppleScript alloc] initWithSource:selectedContentTextRangeScript];
-            NSAppleEventDescriptor *scriptResult = [script executeAndReturnError:&errorDict];
-            
-            if (!scriptResult) {
-                LLog(@"Provide accessibilty to Acrolinx Application under System Preferences to run check selection: %@", [errorDict valueForKey:@"NSAppleScriptErrorBriefMessage"]);
-                return nil ;
-            }
-            else
+        id optionValue =[options valueForKey:@"selection"];
+        if(optionValue != (id)[NSNull null]) {
+            int selectionValue = [options [@"selection"] intValue];
+            int numberWithValue =[@1 intValue];
+            if(selectionValue == numberWithValue)
             {
-                if ((nil != [scriptResult descriptorAtIndex:1]) && (nil != [scriptResult descriptorAtIndex:2])) {
-                    
-                    NSUInteger loc = 0;
-                    NSUInteger len = 0;
-                    
-                    [[[scriptResult descriptorAtIndex:1] data] getBytes:&loc length:sizeof(loc)];
-                    [[[scriptResult descriptorAtIndex:2] data] getBytes:&len length:sizeof(len)];
-                    
-                    [selectedContentArray addObject: [NSArray arrayWithObjects:[NSNumber numberWithInteger:loc - 1],[NSNumber numberWithInteger:len],nil]];
+                NSString *selectedContentTextRangeScript = [NSString stringWithFormat:kSelectedContentTextRangeScriptFormat];
+                NSDictionary *errorDict;
+                NSAppleScript *script = [[NSAppleScript alloc] initWithSource:selectedContentTextRangeScript];
+                NSAppleEventDescriptor *scriptResult = [script executeAndReturnError:&errorDict];
+                
+                if (!scriptResult) {
+                    LLog(@"Provide accessibilty to Acrolinx Application under System Preferences to run check selection: %@", [errorDict valueForKey:@"NSAppleScriptErrorBriefMessage"]);
+                    return nil ;
+                }
+                else
+                {
+                    if ((nil != [scriptResult descriptorAtIndex:1]) && (nil != [scriptResult descriptorAtIndex:2])) {
+                        
+                        NSUInteger loc = 0;
+                        NSUInteger len = 0;
+                        
+                        [[[scriptResult descriptorAtIndex:1] data] getBytes:&loc length:sizeof(loc)];
+                        [[[scriptResult descriptorAtIndex:2] data] getBytes:&len length:sizeof(len)];
+                        
+                        [selectedContentArray addObject: [NSArray arrayWithObjects:[NSNumber numberWithInteger:loc - 1],[NSNumber numberWithInteger:len],nil]];
+                    }
                 }
             }
         }
