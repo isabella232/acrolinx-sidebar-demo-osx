@@ -163,6 +163,7 @@ Note: To enable Check Selection perform following steps:
  * Open file AcrolinxPluginTextEdit.m and uncomment the code in the method getSelectedContent.
  * Set the check selection key to true in method checkSelectionSupported and build TextEdit plugin. 
  * Before running Acrolinx application enables its accessibility. This is needed as selection works on system events.
+ * (System Preferences > Security and Privacy > Privacy > Accessibility > Tick the option of Acrolinx Application) save these settings and then run check selection it will work as expected.
 
 ### Lookup
 
