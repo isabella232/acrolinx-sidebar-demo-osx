@@ -2,7 +2,7 @@
 
 This is a showcase for integrating the [Acrolinx](https://www.acrolinx.com/) Sidebar into a Mac OS X Application.
 
-See: [Getting Started with Custom Integrations](https://support.acrolinx.com/hc/en-us/articles/205687652-Getting-Started-with-Custom-Integrations)
+See: [Getting Started with Custom Integrations](https://docs.acrolinx.com/customintegrations)
 
 ## Live Demo
 
@@ -13,7 +13,7 @@ See: [Getting Started with Custom Integrations](https://support.acrolinx.com/hc/
 The Acrolinx Sidebar is designed to show up beside the window where you edit your content.
 You use it for checking, reviewing, and correcting your content.
 To get an impression what the Sidebar looks like in existing integrations, have a look at
-[Get Started With the Sidebar](https://support.acrolinx.com/hc/en-us/articles/205697451-Get-Started-With-the-Sidebar).
+[Get Started With the Sidebar](https://docs.acrolinx.com/coreplatform/latest/en/the-sidebar/get-started-with-the-sidebar).
 
 ## Prerequisites
 
