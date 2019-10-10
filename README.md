@@ -156,7 +156,7 @@ To enable Check Selection in the demo code, perform following steps:
 
 * See [`doc/com.acrolinx.AcrolinxPlugin-Framework.docset`](doc/com.acrolinx.AcrolinxPlugin-Framework.docset)
   for the Acrolinx Framework Class Reference.
-* The Sidebar SDKs are based on the [Acrolinx Sidebar Interface](https://acrolinx.github.io/sidebar-sdk-js/).
+* The Sidebar SDKs are based on the [Acrolinx Sidebar Interface](https://acrolinx.github.io/sidebar-interface/).
 
 ## License
 
