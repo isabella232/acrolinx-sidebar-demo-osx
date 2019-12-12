@@ -1,6 +1,6 @@
 # Acrolinx OS X Sidebar Demo  
 
-This is a showcase for integrating the [Acrolinx](https://www.acrolinx.com/) Sidebar into a Mac OS X Application.
+This is a showcase for integrating the [Acrolinx](https://www.acrolinx.com/) Sidebar into a macOS X Application.
 
 See: [Getting Started with Custom Integrations](https://docs.acrolinx.com/customintegrations)
 
