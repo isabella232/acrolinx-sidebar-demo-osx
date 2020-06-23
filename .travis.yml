@@ -6,7 +6,9 @@ addons:
 os: osx
 osx_image: xcode11.6
 language: objective-c
-before_script: cd AcrolinxPluginSamples/AcrolinxPluginTextEdit
 script:
+- cd AcrolinxPluginSamples/AcrolinxPluginTextEdit
 - xcodebuild build
+- cd ..
+- cd ..
 - sonar-scanner -Dsonar.cfamily.build-wrapper-output=bw-output
