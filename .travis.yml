@@ -1,7 +1,12 @@
+addons:
+  sonarcloud:
+    organization: acrolinx
+    token:
+        secure: kgZN4Cq/FI6v1mqpr/hvpebl+eaxHMNvotEgcuau5JENWOvP8PZaFZ0Z/agqbz/9+HIY3T8rYyZSQfyDOg+IOJ1ahIH2mHjzBUg7GvCZvI9WXhNePSmvEbBXyxWlY2Z8Tjf9M2hc/u0BixiJrQ/B4QO9Xl5HkF5oiPCulRcIQ+txJzSxEXR75NX8C88cA6zoC2QM4cFLlgSTGXY7NqYQk30RB5kxFPawcnvGdiDsK+tbds/PwRQhXmCcKJ+gILqCztocqKWYIsD8nlKGzYVXuBDDlEIIfX73a4f4n2bKW4+Y2h0Ex5eBTS8r8tB5XW9W/ZWJA+BYgxpOrsUAY38KyHCtxLZBI9kOnFS0oRUqF6toQAAF4tbLOVhM9dvRv6Ah72Kyym22mkWHbeDhZa3tC6CwvFxJkZf++WUtmPBRlb40c0GLYFDiL+YFHEwZWlndJ9XtmOHUWc9zzkMW5WH/EOM6vaKetn8ssXcaxsQn4MDZou3SHqU/5nNOSK3UMwFc0wFDjebij7NgYV6kX5AvdYaaVG1XO6mUbL2kLTsmvn3C1X5TXIOAl8zmkqKClTA4yb9u7SqYdTgMg8Z/KnvRyKhaxX12+XoA982lL1bGvJTHWGDF/UjMdLLoAOGJhNsnu/N+HGdkkAKuRjLJNNKUwMPyL7/cgMu7IkmIYpnDwWE=
 os: osx
 osx_image: xcode11.6
 language: objective-c
-#xcode_project: AcrolinxPluginSamples/AcrolinxPluginTextEdit/AcrolinxPluginTextEdit.xcodeproj
-#xcode_scheme: AcrolinxPluginTextEdit
 before_script: cd AcrolinxPluginSamples/AcrolinxPluginTextEdit
-script: xcodebuild build 
+script:
+- xcodebuild build
+- sonar-scanner -Dsonar.cfamily.build-wrapper-output=bw-output
