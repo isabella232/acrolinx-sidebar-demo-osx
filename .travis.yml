@@ -1,5 +1,7 @@
 os: osx
 osx_image: xcode11.6
 language: objective-c
-xcode_project: AcrolinxPluginSamples/AcrolinxPluginTextEdit/AcrolinxPluginTextEdit.xcodeproj
-xcode_scheme: AcrolinxPluginTextEdit
+#xcode_project: AcrolinxPluginSamples/AcrolinxPluginTextEdit/AcrolinxPluginTextEdit.xcodeproj
+#xcode_scheme: AcrolinxPluginTextEdit
+
+script: xcodebuild clean build AcrolinxPluginSamples/AcrolinxPluginTextEdit/AcrolinxPluginTextEdit.xcodeproj
