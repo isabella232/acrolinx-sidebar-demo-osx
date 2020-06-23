@@ -11,4 +11,6 @@ script:
 - xcodebuild build
 - cd ..
 - cd ..
+- brew install tree
+- tree
 - sonar-scanner -Dsonar.cfamily.build-wrapper-output=bw-output
