@@ -8,10 +8,9 @@ osx_image: xcode11.6
 language: objective-c
 script:
 - cd AcrolinxPluginSamples/AcrolinxPluginTextEdit
-- xcodebuild build
+- build-wrapper-macosx-x86 --out-dir bw-output xcodebuild build
 - cd ..
 - cd ..
 - brew install tree
 - tree
-- sonar-scanner 
-#-Dsonar.cfamily.build-wrapper-output=bw-output
+- sonar-scanner -Dsonar.cfamily.build-wrapper-output=bw-output
