@@ -13,4 +13,5 @@ script:
 - cd ..
 - brew install tree
 - tree
-#- sonar-scanner -Dsonar.cfamily.build-wrapper-output=bw-output
+- sonar-scanner 
+#-Dsonar.cfamily.build-wrapper-output=bw-output
